@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>SimpleAntiCheat</AssemblyName>
+    <RootNamespace>SimpleAntiCheat</RootNamespace>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Chỉ tham chiếu UnityEngine.dll cơ bản -->
+    <Reference Include="UnityEngine">
+      <HintPath>C:\Path\To\Your\Game\GameName_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>
