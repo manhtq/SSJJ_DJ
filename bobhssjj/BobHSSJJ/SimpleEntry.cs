@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.IO;
 
 public static class SimpleEntry
 {
@@ -6,27 +7,18 @@ public static class SimpleEntry
     {
         try
         {
-            if (UnityEngine.Object.FindObjectOfType<AntiCheat>() != null)
-            {
-                return;
-            }
+            // Tạo file log đơn giản
+            File.WriteAllText("C:\\AntiCheat_Loaded.txt", "AntiCheat loaded at: " + System.DateTime.Now);
+            
             var go = new GameObject("AntiCheat");
             var ac = go.AddComponent<AntiCheat>();
             UnityEngine.Object.DontDestroyOnLoad(go);
+            
+            File.AppendAllText("C:\\AntiCheat_Loaded.txt", "\nGameObject created successfully!");
         }
-        catch { }
-    }
-
-    public static void Unload()
-    {
-        try
+        catch (System.Exception ex)
         {
-            var existing = UnityEngine.Object.FindObjectOfType<AntiCheat>();
-            if (existing != null)
-            {
-                UnityEngine.Object.Destroy(existing.gameObject);
-            }
+            File.WriteAllText("C:\\AntiCheat_Error.txt", ex.ToString());
         }
-        catch { }
     }
 }
