@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.IO.Pipes;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
@@ -74,31 +73,21 @@ public class AntiCheat : MonoBehaviour
 
 	private void CheckNamedPipe()
 	{
-		// The cheat uses a named pipe A9CC91EDA92B for heartbeat
 		const string pipeName = "A9CC91EDA92B";
-		// Attempt a non-blocking connect to detect server presence
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
 		ThreadPool.QueueUserWorkItem(_ =>
 		{
 			try
 			{
-				using (var client = new NamedPipeClientStream(pipeName))
+				string fullName = "\\\\.\\pipe\\" + pipeName;
+				if (WaitNamedPipe(fullName, 1))
 				{
-					var connected = false;
-					var connectThread = new Thread(() =>
-					{
-						try { client.Connect(50); connected = client.IsConnected; } catch { connected = false; }
-					});
-					connectThread.IsBackground = true;
-					connectThread.Start();
-					connectThread.Join(60);
-					if (connected)
-					{
-						FlagOnce("pipe:" + pipeName, "Named pipe server detected: " + pipeName);
-					}
+					FlagOnce("pipe:" + pipeName, "Named pipe server detected: " + pipeName);
 				}
 			}
-			catch { /* ignore platform/non-Windows */ }
+			catch { }
 		});
+#endif
 	}
 
 	private void CheckDetourPresence()
@@ -175,4 +164,20 @@ public static class AntiCheatBootstrap
 		catch { }
 	}
 }
+
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
+internal static class NativePipes
+{
+}
+#endif
+
+#if UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
+public partial class AntiCheat
+{
+	private const uint NMPWAIT_NOWAIT = 0x00000001;
+
+	[System.Runtime.InteropServices.DllImport("kernel32.dll", SetLastError = true, CharSet = System.Runtime.InteropServices.CharSet.Auto)]
+	private static extern bool WaitNamedPipe(string lpNamedPipeName, uint nTimeOut);
+}
+#endif
 
