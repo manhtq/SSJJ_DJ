@@ -1,6 +1,8 @@
 using UnityEngine;
 
-public static class SMIEntry
+namespace AdvancedAntiCheat
+{
+    public static class SMIEntry
 {
 	// SharpMonoInjector: set Target Method to SMIEntry.Load (or LoadWithArg)
 	public static void Load()
@@ -44,5 +46,6 @@ public static class SMIEntry
 		}
 		catch { }
 	}
+}
 }
 
