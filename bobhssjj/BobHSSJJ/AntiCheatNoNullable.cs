@@ -1,4 +1,3 @@
-#nullable enable
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,7 +11,7 @@ public partial class AntiCheat : MonoBehaviour
 {
 	public float checkIntervalSeconds = 2.0f;
 	public bool logDetectionsToConsole = true;
-	public Action<string>? OnCheatDetected;
+	public Action<string> OnCheatDetected;
 
 	private float _nextCheckAt;
 	private readonly HashSet<string> _onceFlags = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
