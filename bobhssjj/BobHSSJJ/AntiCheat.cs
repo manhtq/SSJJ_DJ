@@ -11,7 +11,7 @@ public partial class AntiCheat : MonoBehaviour
 {
 	public float checkIntervalSeconds = 2.0f;
 	public bool logDetectionsToConsole = true;
-	public Action<string> OnCheatDetected;
+	public Action<string>? OnCheatDetected;
 
 	private float _nextCheckAt;
 	private readonly HashSet<string> _onceFlags = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
@@ -75,8 +75,8 @@ public partial class AntiCheat : MonoBehaviour
 
 	private void CheckNamedPipe()
 	{
-		const string pipeName = "A9CC91EDA92B";
 #if UNITY_STANDALONE_WIN || UNITY_EDITOR_WIN
+		const string pipeName = "A9CC91EDA92B";
 		ThreadPool.QueueUserWorkItem(_ =>
 		{
 			try

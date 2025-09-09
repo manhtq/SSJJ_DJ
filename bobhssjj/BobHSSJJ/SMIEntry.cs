@@ -5,7 +5,7 @@ public static class SMIEntry
 	// SharpMonoInjector: set Target Method to SMIEntry.Load (or LoadWithArg)
 	public static void Load()
 	{
-		TryStart(null);
+		TryStart(string.Empty);
 	}
 
 	public static void LoadWithArg(string arg)
@@ -17,10 +17,10 @@ public static class SMIEntry
 	{
 		try
 		{
-			var existing = Object.FindObjectOfType<AntiCheat>();
+			var existing = UnityEngine.Object.FindObjectOfType<AntiCheat>();
 			if (existing != null)
 			{
-				Object.Destroy(existing.gameObject);
+				UnityEngine.Object.Destroy(existing.gameObject);
 			}
 		}
 		catch { }
@@ -30,13 +30,13 @@ public static class SMIEntry
 	{
 		try
 		{
-			if (Object.FindObjectOfType<AntiCheat>() != null)
+			if (UnityEngine.Object.FindObjectOfType<AntiCheat>() != null)
 			{
 				return;
 			}
 			var go = new GameObject("AntiCheat");
 			var ac = go.AddComponent<AntiCheat>();
-			Object.DontDestroyOnLoad(go);
+			UnityEngine.Object.DontDestroyOnLoad(go);
 			if (!string.IsNullOrEmpty(arg) && arg.Equals("nolog", System.StringComparison.OrdinalIgnoreCase))
 			{
 				ac.logDetectionsToConsole = false;
