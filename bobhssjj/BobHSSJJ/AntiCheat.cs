@@ -7,7 +7,7 @@ using System.Threading;
 using System.Diagnostics;
 using UnityEngine;
 
-public class AntiCheat : MonoBehaviour
+public partial class AntiCheat : MonoBehaviour
 {
 	public float checkIntervalSeconds = 2.0f;
 	public bool logDetectionsToConsole = true;
