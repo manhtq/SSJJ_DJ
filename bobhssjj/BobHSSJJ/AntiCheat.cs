@@ -140,7 +140,7 @@ public class AntiCheat : MonoBehaviour
 		{
 			if (logDetectionsToConsole)
 			{
-				Debug.LogWarning("[AntiCheat] " + message);
+				UnityEngine.Debug.LogWarning("[AntiCheat] " + message);
 			}
 			try { OnCheatDetected?.Invoke(message); } catch { }
 			TerminateNow();
@@ -169,7 +169,7 @@ public static class AntiCheatBootstrap
 		{
 			var go = new GameObject("AntiCheat");
 			var ac = go.AddComponent<AntiCheat>();
-			ac.OnCheatDetected += msg => { Debug.LogWarning("[AntiCheat] Detected: " + msg); };
+			ac.OnCheatDetected += msg => { UnityEngine.Debug.LogWarning("[AntiCheat] Detected: " + msg); };
 		}
 		catch { }
 	}
