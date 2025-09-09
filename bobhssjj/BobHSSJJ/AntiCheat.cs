@@ -54,11 +54,11 @@ public class AntiCheat : MonoBehaviour
 			if (string.IsNullOrEmpty(name)) continue;
 
 			// Signatures from the analyzed cheat
-			if (name.Contains("BobHSSJJ", StringComparison.OrdinalIgnoreCase))
+			if (name.IndexOf("BobHSSJJ", StringComparison.OrdinalIgnoreCase) >= 0)
 				FlagOnce("asm:BobHSSJJ", "Loaded suspicious assembly: " + name);
-			if (name.Contains("MonoMod.RuntimeDetour", StringComparison.OrdinalIgnoreCase))
+			if (name.IndexOf("MonoMod.RuntimeDetour", StringComparison.OrdinalIgnoreCase) >= 0)
 				FlagOnce("asm:RuntimeDetour", "Detour framework present: " + name);
-			if (name.Contains("Mono.Cecil", StringComparison.OrdinalIgnoreCase))
+			if (name.IndexOf("Mono.Cecil", StringComparison.OrdinalIgnoreCase) >= 0)
 				FlagOnce("asm:Mono.Cecil", "IL tooling present: " + name);
 		}
 	}
