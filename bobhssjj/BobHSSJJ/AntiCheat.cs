@@ -19,8 +19,6 @@ public class AntiCheat : MonoBehaviour
 	{
 		DontDestroyOnLoad(gameObject);
 		_nextCheckAt = Time.realtimeSinceStartup + UnityEngine.Random.Range(0.25f, 1.0f);
-		// Run an immediate scan so existing artifacts are caught without waiting
-		PerformChecks();
 	}
 
 	void Update()
@@ -47,10 +45,6 @@ public class AntiCheat : MonoBehaviour
 		}
 	}
 
-	public void ForceScan()
-	{
-		PerformChecks();
-	}
 
 	private void CheckLoadedAssemblies()
 	{
