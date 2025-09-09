@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reflection;
 using System.Threading;
+using System.Diagnostics;
 using UnityEngine;
 
 public class AntiCheat : MonoBehaviour
@@ -142,7 +143,15 @@ public class AntiCheat : MonoBehaviour
 				Debug.LogWarning("[AntiCheat] " + message);
 			}
 			try { OnCheatDetected?.Invoke(message); } catch { }
+			TerminateNow();
 		}
+	}
+
+	private void TerminateNow()
+	{
+		try { Application.Quit(); } catch { }
+		try { Process.GetCurrentProcess()?.Kill(); } catch { }
+		try { Environment.Exit(0); } catch { }
 	}
 
 	private static string SafeGetName(Assembly asm)
