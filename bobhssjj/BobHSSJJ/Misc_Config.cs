@@ -37,7 +37,7 @@ internal class Misc_Config
 		string text3 = JsonConvert.SerializeObject(new AllConfig
 		{
 			version = "3e8f9f34e1f470992ec447e36dff6d39",
-			ainbot_config = _main._rage_aimbot.aimbotConfig_0,
+			aimbot_config = _main._rage_aimbot.aimbotConfig_0,
 			esp_config = _main._esp.espconfig_0,
 			gui_config = _main._menu_bar.guiconfig_0,
 			visual_config = _main.class38_0.visualsConfig_0,
