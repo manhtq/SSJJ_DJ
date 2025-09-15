@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Entitas;
 using SSJJUserCmd;
@@ -90,29 +90,29 @@ internal class Misc
 
 	public void MenuDrawing(ref bool bool_0)
 	{
-		IMGUI._Begin("杂项设置", ref bool_0, 700, 700);
-		IMGUI._Checkbox("连跳", ref miscConfig_0.bhop);
-		IMGUI._Checkbox("反自瞄启动[Home]", ref miscConfig_0.antiAimEnabled);
-		IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), "反自瞄X轴类型:");
-		IMGUI._RadioButton("假抬头[Num7]", ref miscConfig_0.antiAimTypeX, 0);
+		IMGUI._Begin(Veh.L.T("misc.title"), ref bool_0, 700, 700);
+		IMGUI._Checkbox(Veh.L.T("misc.bhop"), ref miscConfig_0.bhop);
+		IMGUI._Checkbox(Veh.L.T("misc.antiaim.toggle"), ref miscConfig_0.antiAimEnabled);
+		IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), Veh.L.T("misc.antiaim.x"));
+		IMGUI._RadioButton(Veh.L.T("misc.antiaim.x.fakeup"), ref miscConfig_0.antiAimTypeX, 0);
 		IMGUI._SameLine();
-		IMGUI._RadioButton("假低头[Num9]", ref miscConfig_0.antiAimTypeX, 1);
-		IMGUI._RadioButton("抬头[Num8]", ref miscConfig_0.antiAimTypeX, 2);
+		IMGUI._RadioButton(Veh.L.T("misc.antiaim.x.fakedown"), ref miscConfig_0.antiAimTypeX, 1);
+		IMGUI._RadioButton(Veh.L.T("misc.antiaim.x.up"), ref miscConfig_0.antiAimTypeX, 2);
 		IMGUI._SameLine();
-		IMGUI._RadioButton("低头[Num2]", ref miscConfig_0.antiAimTypeX, 3);
-		IMGUI._RadioButton("平视[Num5]", ref miscConfig_0.antiAimTypeX, 4);
-		IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), "反自瞄Y轴类型:");
-		IMGUI._RadioButton("手动", ref miscConfig_0.antiAimTypeY, 0);
+		IMGUI._RadioButton(Veh.L.T("misc.antiaim.x.down"), ref miscConfig_0.antiAimTypeX, 3);
+		IMGUI._RadioButton(Veh.L.T("misc.antiaim.x.zero"), ref miscConfig_0.antiAimTypeX, 4);
+		IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), Veh.L.T("misc.antiaim.y"));
+		IMGUI._RadioButton(Veh.L.T("misc.antiaim.y.manual"), ref miscConfig_0.antiAimTypeY, 0);
 		IMGUI._SameLine();
-		IMGUI._RadioButton("旋转", ref miscConfig_0.antiAimTypeY, 1);
+		IMGUI._RadioButton(Veh.L.T("misc.antiaim.y.spin"), ref miscConfig_0.antiAimTypeY, 1);
 		IMGUI._SameLine();
-		IMGUI._RadioButton("抖动", ref miscConfig_0.antiAimTypeY, 2);
-		IMGUI._SliderFloat("Y轴角度", ref miscConfig_0.antiAimTypeYAngle, -180f, 180f, "Yaw: %.0f");
+		IMGUI._RadioButton(Veh.L.T("misc.antiaim.y.jitter"), ref miscConfig_0.antiAimTypeY, 2);
+		IMGUI._SliderFloat(Veh.L.T("misc.antiaim.y.angle"), ref miscConfig_0.antiAimTypeYAngle, -180f, 180f, "Yaw: %.0f");
 		if (miscConfig_0.antiAimTypeY != 2)
 		{
 			if (miscConfig_0.antiAimTypeY == 1)
 			{
-				string text = "旋转速度";
+				string text = Veh.L.T("misc.antiaim.spin.speed");
 				int num = 1;
 				int num2 = 1080;
 				IMGUI._SliderInt(text, ref miscConfig_0.antiAimTypeYSpinFactor, num, num2, "RPM: %.0f");
@@ -120,27 +120,27 @@ internal class Misc
 		}
 		else
 		{
-			IMGUI._SliderFloat("最小抖动角度", ref miscConfig_0.antiAimTypeYJitterMin, -180f, 180f, "MinJitter: %.0f");
-			string text2 = "最大抖动角度";
+			IMGUI._SliderFloat(Veh.L.T("misc.antiaim.jitter.min"), ref miscConfig_0.antiAimTypeYJitterMin, -180f, 180f, "MinJitter: %.0f");
+			string text2 = Veh.L.T("misc.antiaim.jitter.max");
 			float num4 = -180f;
 			float num5 = 180f;
 			IMGUI._SliderFloat(text2, ref miscConfig_0.antiAimTypeYJitterMax, num4, num5, "MaxJitter: %.0f");
 		}
-		IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), "键盘快捷键: Z=左 X=背身 C=右");
-		IMGUI._Checkbox("假延迟[Num0]", ref miscConfig_0.fakeLag);
+		IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), Veh.L.T("misc.hotkeys"));
+		IMGUI._Checkbox(Veh.L.T("misc.fakelag.toggle"), ref miscConfig_0.fakeLag);
 		if (miscConfig_0.fakeLag)
 		{
-			IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), "假延迟延迟数:");
-			string text3 = "假延迟";
+			IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), Veh.L.T("misc.fakelag.count.title"));
+			string text3 = Veh.L.T("misc.fakelag.count");
 			int num8 = 0;
 			int num9 = 50;
-			IMGUI._SliderInt(text3, ref miscConfig_0.fakeLagChokeFactor, num8, num9, "延迟: %.0fTick");
+			IMGUI._SliderInt(text3, ref miscConfig_0.fakeLagChokeFactor, num8, num9, Veh.L.T("misc.fakelag.unit"));
 			IMGUI._SameLine();
 		}
-        IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), "武器:");
-        IMGUI._SliderFloat("射击精准度", ref miscConfig_0.accurary, 1f, 100f, "accurary: %.0f");
+        IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), Veh.L.T("misc.weapon"));
+        IMGUI._SliderFloat(Veh.L.T("misc.weapon.accuracy"), ref miscConfig_0.accurary, 1f, 100f, "accurary: %.0f");
         IMGUI._SameLine();
-        IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), "*过高会不开枪");
+        IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), Veh.L.T("misc.weapon.accuracy.tip"));
         IMGUI._End();
     }
 

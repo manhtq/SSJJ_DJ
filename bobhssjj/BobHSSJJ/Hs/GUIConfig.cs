@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Veh.Hs
 {
@@ -19,5 +19,7 @@ namespace Veh.Hs
 		public bool ConfigWindow;
 
 		public bool MiscWindow;
+
+		public string Language;
 	}
 }

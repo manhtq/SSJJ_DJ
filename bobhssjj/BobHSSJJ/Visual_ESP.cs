@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Entitas;
 using UnityEngine;
 using Veh;
@@ -557,33 +557,33 @@ internal class Visual_ESP
 
 	public void MenuDrawing(ref bool bool_0)
 	{
-		IMGUI._Begin("玩家透视", ref bool_0, 500, 500);
-		IMGUI._Checkbox("透视队友", ref espconfig_0.showTeammate);
+		IMGUI._Begin(Veh.L.T("esp.title"), ref bool_0, 500, 500);
+		IMGUI._Checkbox(Veh.L.T("esp.showTeammate"), ref espconfig_0.showTeammate);
 		IMGUI._SameLine();
-		IMGUI._Checkbox("透视敌人", ref espconfig_0.showEnemy);
+		IMGUI._Checkbox(Veh.L.T("esp.showEnemy"), ref espconfig_0.showEnemy);
 		IMGUI._SameLine();
-		IMGUI._Checkbox("显示名字", ref espconfig_0.showName);
+		IMGUI._Checkbox(Veh.L.T("esp.showName"), ref espconfig_0.showName);
 		IMGUI._SameLine();
-		IMGUI._Checkbox("追踪线条", ref espconfig_0.showTranceline);
-		IMGUI._Checkbox("骨骼透视", ref espconfig_0.showBone);
+		IMGUI._Checkbox(Veh.L.T("esp.showTraceline"), ref espconfig_0.showTranceline);
+		IMGUI._Checkbox(Veh.L.T("esp.showBone"), ref espconfig_0.showBone);
 		IMGUI._SameLine();
-		IMGUI._Checkbox("血量透视", ref espconfig_0.showHealth);
+		IMGUI._Checkbox(Veh.L.T("esp.showHealth"), ref espconfig_0.showHealth);
 		IMGUI._SameLine();
-		IMGUI._Checkbox("距离透视", ref espconfig_0.showDistance);
-		IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), "颜色设置:");
-		IMGUI._Text("敌人颜色:");
+		IMGUI._Checkbox(Veh.L.T("esp.showDistance"), ref espconfig_0.showDistance);
+		IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), Veh.L.T("esp.colors.title"));
+		IMGUI._Text(Veh.L.T("esp.colors.enemy"));
 		IMGUI._SameLine();
-		IMGUI._ColorEdit4("敌人颜色", ref espconfig_0.enemyBoxCol);
-		IMGUI._Text("队友颜色:");
+		IMGUI._ColorEdit4(Veh.L.T("esp.colors.enemy"), ref espconfig_0.enemyBoxCol);
+		IMGUI._Text(Veh.L.T("esp.colors.team"));
 		IMGUI._SameLine();
-		IMGUI._ColorEdit4("队友颜色", ref espconfig_0.teamBoxCol);
-		IMGUI._Text("追踪线条颜色:");
+		IMGUI._ColorEdit4(Veh.L.T("esp.colors.team"), ref espconfig_0.teamBoxCol);
+		IMGUI._Text(Veh.L.T("esp.colors.traceline"));
 		IMGUI._SameLine();
-		IMGUI._ColorEdit4("追踪线条颜色", ref espconfig_0.TracelineCol);
-		IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), "粗细设置:");
-		IMGUI._SliderFloat("方框粗细", ref espconfig_0.BoxThickness, 0.1f, 6f, "粗细: %.2f");
-		IMGUI._SliderFloat("追踪线条粗细", ref espconfig_0.TracelineThickness, 0.1f, 6f, "粗细: %.2f");
-		IMGUI._SliderFloat("骨骼粗细", ref espconfig_0.BoneThickness, 0.1f, 5f, "粗细: %.2f");
+		IMGUI._ColorEdit4(Veh.L.T("esp.colors.traceline"), ref espconfig_0.TracelineCol);
+		IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), Veh.L.T("esp.thickness.title"));
+		IMGUI._SliderFloat(Veh.L.T("esp.thickness.box"), ref espconfig_0.BoxThickness, 0.1f, 6f, "粗细: %.2f");
+		IMGUI._SliderFloat(Veh.L.T("esp.thickness.traceline"), ref espconfig_0.TracelineThickness, 0.1f, 6f, "粗细: %.2f");
+		IMGUI._SliderFloat(Veh.L.T("esp.thickness.bone"), ref espconfig_0.BoneThickness, 0.1f, 5f, "粗细: %.2f");
 		IMGUI._End();
 	}
 
