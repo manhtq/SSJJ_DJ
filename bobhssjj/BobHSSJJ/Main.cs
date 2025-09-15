@@ -28,6 +28,7 @@ internal class Main : MonoBehaviour
 				_menu_bar.guiconfig_0.Language = "vi-VN";
 			}
 			Veh.L.SetLanguage(_menu_bar.guiconfig_0.Language);
+			Veh.UITheme.EnsureDefaults(ref _menu_bar.guiconfig_0);
 			struct22_0 = default(Struct22);
 			Rage_SilentAim.initbone();
 			finishLoad = true;

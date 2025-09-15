@@ -21,5 +21,9 @@ namespace Veh.Hs
 		public bool MiscWindow;
 
 		public string Language;
+
+		public string Theme;
+
+		public ImVec4 Accent;
 	}
 }

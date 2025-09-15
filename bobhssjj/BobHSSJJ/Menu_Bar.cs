@@ -44,7 +44,7 @@ internal class Menu_Bar
 					IMGUI._MenuItem(Veh.L.T("menu.visual"), ref guiconfig_0.VisualsWindow);
 					IMGUI._MenuItem(Veh.L.T("menu.misc"), ref guiconfig_0.MiscWindow);
 					IMGUI._MenuItem(Veh.L.T("menu.config"), ref guiconfig_0.ConfigWindow);
-					ImVec4 imVec = new ImVec4(0f, 1f, 0f, 1f);
+					ImVec4 imVec = Veh.UITheme.ColorAccent();
 					IMGUI._TextColored(imVec, string.Format(Veh.L.T("menu.fps"), IMGUI._GetFps().ToString()));
 					IMGUI._EndMainMenuBar();
 				}
@@ -71,6 +71,8 @@ internal class Menu_Bar
 				{
 					main._misc_config.MenuDrawing(ref guiconfig_0.ConfigWindow);
 				}
+				// Overlay always-on status (even when menu hidden)
+				DrawStatusOverlay();
 				//goto IL_511;
 			}
 			catch (Exception ex)
@@ -114,6 +116,18 @@ internal class Menu_Bar
 		drawCallback = new IMGUI.DrawCallback(MenuDrawing);
 		IMGUI._StartDrawThread(drawCallback, 10);
     }
+
+	void DrawStatusOverlay()
+	{
+		try
+		{
+			ImVec2 pos = new ImVec2(10, 10);
+			ImVec4 accent = Veh.UITheme.ColorAccent();
+			string status = string.Format("ESP:{0}  AIM:{1}  MISC:{2}", guiconfig_0.ESPWindow ? "ON" : "OFF", guiconfig_0.AimbotWindow ? "ON" : "OFF", guiconfig_0.MiscWindow ? "ON" : "OFF");
+			IMGUI._AddText2(14, pos, IMGUI._GetImU32ByImVec4(accent), status);
+		}
+		catch { }
+	}
 
 	internal GUIConfig guiconfig_0;
 
