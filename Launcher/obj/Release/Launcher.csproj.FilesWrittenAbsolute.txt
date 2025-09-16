@@ -1,0 +1,4 @@
+/workspace/Launcher/bin/Release/Launcher.exe.mdb
+/workspace/Launcher/bin/Release/Launcher.exe
+/workspace/Launcher/obj/Release/Launcher.exe
+/workspace/Launcher/obj/Release/Launcher.exe.mdb
