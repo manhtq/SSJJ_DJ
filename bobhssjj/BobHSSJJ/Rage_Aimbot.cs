@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using Assets.Sources.Components.UserComand;
@@ -445,60 +445,60 @@ internal class Rage_Aimbot
 
 	public void MenuDrawing(ref bool bool_1)
 	{
-		IMGUI._Begin("自动瞄准", ref bool_1, 800, 800);
-		IMGUI._Checkbox("启动标准自瞄", ref aimbotConfig_0.enable);
+		IMGUI._Begin(Veh.L.T("aim.title"), ref bool_1, 800, 800);
+		IMGUI._Checkbox(Veh.L.T("aim.enable"), ref aimbotConfig_0.enable);
 		IMGUI._SameLine();
-		IMGUI._Checkbox("是否瞄准队友", ref aimbotConfig_0.aimTeam);
-		IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), "瞄准方式:");
-		IMGUI._RadioButton("鼠标API自瞄", ref aimbotConfig_0.aimType, 1);
+		IMGUI._Checkbox(Veh.L.T("aim.team"), ref aimbotConfig_0.aimTeam);
+		IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), Veh.L.T("aim.method"));
+		IMGUI._RadioButton(Veh.L.T("aim.method.mouse"), ref aimbotConfig_0.aimType, 1);
 		IMGUI._SameLine();
-		IMGUI._RadioButton("内部摄像机自瞄", ref aimbotConfig_0.aimType, 2);
-		IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), "瞄准位置:");
-		IMGUI._RadioButton("头部", ref int_1, 1);
+		IMGUI._RadioButton(Veh.L.T("aim.method.camera"), ref aimbotConfig_0.aimType, 2);
+		IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), Veh.L.T("aim.pos"));
+		IMGUI._RadioButton(Veh.L.T("aim.pos.head"), ref int_1, 1);
 		IMGUI._SameLine();
-		IMGUI._RadioButton("脖子", ref int_1, 2);
+		IMGUI._RadioButton(Veh.L.T("aim.pos.neck"), ref int_1, 2);
 		IMGUI._SameLine();
-		IMGUI._RadioButton("上脊柱", ref int_1, 3);
+		IMGUI._RadioButton(Veh.L.T("aim.pos.spine.up"), ref int_1, 3);
 		IMGUI._SameLine();
-		IMGUI._RadioButton("下脊柱", ref int_1, 4);
+		IMGUI._RadioButton(Veh.L.T("aim.pos.spine.down"), ref int_1, 4);
 		UpdateConfigAimpos();
-		IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), "自瞄按键:");
-		IMGUI._RadioButton("E键", ref _tempAimkey, 1);
+		IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), Veh.L.T("aim.key.title"));
+		IMGUI._RadioButton(Veh.L.T("aim.key.e"), ref _tempAimkey, 1);
 		IMGUI._SameLine();
-		IMGUI._RadioButton("左Ctrl键", ref _tempAimkey, 2);
+		IMGUI._RadioButton(Veh.L.T("aim.key.ctrl"), ref _tempAimkey, 2);
 		IMGUI._SameLine();
-		IMGUI._RadioButton("鼠标左键", ref _tempAimkey, 3);
+		IMGUI._RadioButton(Veh.L.T("aim.key.mouse.left"), ref _tempAimkey, 3);
 		IMGUI._SameLine();
-		IMGUI._RadioButton("鼠标右键", ref _tempAimkey, 4);
+		IMGUI._RadioButton(Veh.L.T("aim.key.mouse.right"), ref _tempAimkey, 4);
 		UpdateConfigAimkey();
-		IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), "自瞄范围:");
-		IMGUI._SliderInt("自瞄范围", ref aimbotConfig_0.aimRange, 10, Math.Min(Screen.height / 2, Screen.width / 2), "半径: %.0f");
-		IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), "自瞄速度:");
+		IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), Veh.L.T("aim.range.title"));
+		IMGUI._SliderInt(Veh.L.T("aim.range.title"), ref aimbotConfig_0.aimRange, 10, Math.Min(Screen.height / 2, Screen.width / 2), Veh.L.T("aim.range.unit"));
+		IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), Veh.L.T("aim.speed.title"));
 		if (aimbotConfig_0.aimType == 1)
 		{
-			string text = "自瞄平滑度";
+			string text = Veh.L.T("aim.smooth");
 			float num = 0.1f;
 			float num2 = 15f;
-			IMGUI._SliderFloat(text, ref aimbotConfig_0.smooth, num, num2, "平滑度: %.2f");
+			IMGUI._SliderFloat(text, ref aimbotConfig_0.smooth, num, num2, "%.2f");
 		}
 		if (aimbotConfig_0.aimType == 2)
 		{
-			string text2 = "摄像机自瞄最大角度";
+			string text2 = Veh.L.T("aim.maxAngle");
 			float num4 = 0.1f;
 			float num5 = 100f;
-			IMGUI._SliderFloat(text2, ref aimbotConfig_0.maxMoveAngle, num4, num5, "最大角度: %.2f");
+			IMGUI._SliderFloat(text2, ref aimbotConfig_0.maxMoveAngle, num4, num5, Veh.L.T("aim.maxAngle.unit"));
 		}
-		IMGUI._Checkbox("无后坐力(瞄准时)", ref aimbotConfig_0.noRecoil);
-		IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), "暴力自瞄:");
-		IMGUI._Checkbox("启动子弹追踪", ref aimbotConfig_0.silentAim);
+		IMGUI._Checkbox(Veh.L.T("aim.norecoil"), ref aimbotConfig_0.noRecoil);
+		IMGUI._TextColored(new ImVec4(0f, 1f, 0f, 1f), Veh.L.T("aim.brutal"));
+		IMGUI._Checkbox(Veh.L.T("aim.silent"), ref aimbotConfig_0.silentAim);
 		IMGUI._SameLine();
-		IMGUI._Checkbox("手动开枪(按中键开枪)[P]", ref aimbotConfig_0.onKeyAim);
-		IMGUI._Checkbox("完美静默(网络通畅时使用)", ref aimbotConfig_0.pSilent);
+		IMGUI._Checkbox(Veh.L.T("aim.onkey"), ref aimbotConfig_0.onKeyAim);
+		IMGUI._Checkbox(Veh.L.T("aim.psilent"), ref aimbotConfig_0.pSilent);
 		IMGUI._SameLine();
-		IMGUI._Checkbox("全身扫描(卡顿)[鼠标上侧键-按住临时切换]", ref aimbotConfig_0.hitScan);
+		IMGUI._Checkbox(Veh.L.T("aim.hitscan"), ref aimbotConfig_0.hitScan);
 		if (!aimbotConfig_0.hitScan)
 		{
-			IMGUI._Checkbox("仅攻击身体", ref aimbotConfig_0.bodyAim);
+			IMGUI._Checkbox(Veh.L.T("aim.body"), ref aimbotConfig_0.bodyAim);
 		}
 		IMGUI._End();
 	}

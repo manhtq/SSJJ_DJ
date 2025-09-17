@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Entitas;
 using UnityEngine;
@@ -38,14 +38,14 @@ internal class Menu_Bar
                 
 				if (IMGUI._BeginMainMenuBar())
 				{
-					IMGUI._Text("迪迦 - 破解版");
-					IMGUI._MenuItem("透视", ref guiconfig_0.ESPWindow);
-					IMGUI._MenuItem("自动瞄准", ref guiconfig_0.AimbotWindow);
-					IMGUI._MenuItem("视觉", ref guiconfig_0.VisualsWindow);
-					IMGUI._MenuItem("杂项", ref guiconfig_0.MiscWindow);
-					IMGUI._MenuItem("配置文件", ref guiconfig_0.ConfigWindow);
-					ImVec4 imVec = new ImVec4(0f, 1f, 0f, 1f);
-					IMGUI._TextColored(imVec, "FPS: " + IMGUI._GetFps().ToString());
+					IMGUI._Text(Veh.L.T("app.title"));
+					IMGUI._MenuItem(Veh.L.T("menu.esp"), ref guiconfig_0.ESPWindow);
+					IMGUI._MenuItem(Veh.L.T("menu.aimbot"), ref guiconfig_0.AimbotWindow);
+					IMGUI._MenuItem(Veh.L.T("menu.visual"), ref guiconfig_0.VisualsWindow);
+					IMGUI._MenuItem(Veh.L.T("menu.misc"), ref guiconfig_0.MiscWindow);
+					IMGUI._MenuItem(Veh.L.T("menu.config"), ref guiconfig_0.ConfigWindow);
+					ImVec4 imVec = Veh.UITheme.ColorAccent();
+					IMGUI._TextColored(imVec, string.Format(Veh.L.T("menu.fps"), IMGUI._GetFps().ToString()));
 					IMGUI._EndMainMenuBar();
 				}
 				if (guiconfig_0.ESPWindow)
@@ -71,6 +71,8 @@ internal class Menu_Bar
 				{
 					main._misc_config.MenuDrawing(ref guiconfig_0.ConfigWindow);
 				}
+				// Overlay always-on status (even when menu hidden)
+				DrawStatusOverlay();
 				//goto IL_511;
 			}
 			catch (Exception ex)
@@ -114,6 +116,18 @@ internal class Menu_Bar
 		drawCallback = new IMGUI.DrawCallback(MenuDrawing);
 		IMGUI._StartDrawThread(drawCallback, 10);
     }
+
+	void DrawStatusOverlay()
+	{
+		try
+		{
+			ImVec2 pos = new ImVec2(10, 10);
+			ImVec4 accent = Veh.UITheme.ColorAccent();
+			string status = string.Format("ESP:{0}  AIM:{1}  MISC:{2}", guiconfig_0.ESPWindow ? "ON" : "OFF", guiconfig_0.AimbotWindow ? "ON" : "OFF", guiconfig_0.MiscWindow ? "ON" : "OFF");
+			IMGUI._AddText2(14, pos, IMGUI._GetImU32ByImVec4(accent), status);
+		}
+		catch { }
+	}
 
 	internal GUIConfig guiconfig_0;
 

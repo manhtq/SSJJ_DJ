@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using Newtonsoft.Json;
 using Veh;
@@ -14,12 +14,12 @@ internal class Misc_Config
 		bool_0 = CheckConfig();
 		if (!bool_0)
 		{
-			string_0 = "配置文件不存在!";
+			string_0 = Veh.L.T("config.missing");
 			imVec4_0 = new ImVec4(1f, 0f, 0f, 1f);
 		}
 		else
 		{
-			string_0 = "配置文件存在!";
+			string_0 = Veh.L.T("config.exists");
 			imVec4_0 = new ImVec4(0f, 1f, 0f, 1f);
 			LoadConfig();
 		}
@@ -53,12 +53,12 @@ internal class Misc_Config
 		}
 		catch (Exception ex)
 		{
-			string_0 = "保存失败,异常信息:" + ex.Message;
+			string_0 = Veh.L.T("config.save.fail") + ex.Message;
 			imVec4_0 = new ImVec4(1f, 0f, 0f, 1f);
 		}
 		finally
 		{
-			string_0 = "保存成功!";
+			string_0 = Veh.L.T("config.save.ok");
 			imVec4_0 = new ImVec4(0f, 1f, 0f, 1f);
 		}
 	}
@@ -86,21 +86,26 @@ internal class Misc_Config
 					_main._menu_bar.guiconfig_0 = allConfig.gui_config;
 					_main.class38_0.visualsConfig_0 = allConfig.visual_config;
                     _main._misc.miscConfig_0 = allConfig.misc_config;
+					// apply language
+					if (!string.IsNullOrEmpty(_main._menu_bar.guiconfig_0.Language))
+					{
+						Veh.L.SetLanguage(_main._menu_bar.guiconfig_0.Language);
+					}
 				}
 				catch (Exception ex)
 				{
-					string_0 = "载入失败,异常信息:" + ex.Message;
+					string_0 = Veh.L.T("config.load.fail") + ex.Message;
 					imVec4_0 = new ImVec4(1f, 0f, 0f, 1f);
 				}
 				goto IL_29B;
 			}
 			finally
 			{
-				string_0 = "载入成功";
+				string_0 = Veh.L.T("config.load.ok");
 				imVec4_0 = new ImVec4(0f, 1f, 0f, 1f);
 			}
 		}
-		string_0 = "配置文件不存在,载入失败!";
+		string_0 = Veh.L.T("config.load.missing");
 		imVec4_0 = new ImVec4(1f, 0f, 0f, 1f);
     IL_29B:;
 	}
@@ -123,15 +128,29 @@ internal class Misc_Config
 
 	internal void MenuDrawing(ref bool bool_1)
 	{
-		IMGUI._Begin("配置管理", ref bool_1, 500, 150);
-		if (IMGUI._Button("保存配置", 0, 0))
+		IMGUI._Begin(Veh.L.T("config.title"), ref bool_1, 500, 180);
+		if (IMGUI._Button(Veh.L.T("config.save"), 0, 0))
 		{
 			SaveConfig();
 		}
 		IMGUI._SameLine();
-		if (IMGUI._Button("载入配置", 0, 0))
+		if (IMGUI._Button(Veh.L.T("config.load"), 0, 0))
 		{
 			LoadConfig();
+		}
+		// Language selector: two buttons zh-CN and vi-VN
+		IMGUI._Text(Veh.L.T("config.language") + ": ");
+		IMGUI._SameLine();
+		if (IMGUI._Button("中文(简体)", 0, 0))
+		{
+			_main._menu_bar.guiconfig_0.Language = "zh-CN";
+			Veh.L.SetLanguage("zh-CN");
+		}
+		IMGUI._SameLine();
+		if (IMGUI._Button("Tiếng Việt", 0, 0))
+		{
+			_main._menu_bar.guiconfig_0.Language = "vi-VN";
+			Veh.L.SetLanguage("vi-VN");
 		}
 		if (string_0 != "")
 		{

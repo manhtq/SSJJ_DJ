@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using Entitas;
 using UnityEngine;
@@ -196,14 +196,14 @@ internal class Visual
 
 	public void method_6(ref bool bool_0)
 	{
-		IMGUI._Begin("视觉设置", ref bool_0, 500, 500);
-		IMGUI._Checkbox("不显示队友名字(游戏内)", ref visualsConfig_0.noTeammateName);
+		IMGUI._Begin(Veh.L.T("visual.title"), ref bool_0, 500, 500);
+		IMGUI._Checkbox(Veh.L.T("visual.noTeammateName"), ref visualsConfig_0.noTeammateName);
 		IMGUI._SameLine();
-		IMGUI._Checkbox("全屏准星", ref visualsConfig_0.showCrosshair);
-		IMGUI._Checkbox("不渲染队友模型", ref visualsConfig_0.noTeammateRender);
+		IMGUI._Checkbox(Veh.L.T("visual.crosshair"), ref visualsConfig_0.showCrosshair);
+		IMGUI._Checkbox(Veh.L.T("visual.noTeammateRender"), ref visualsConfig_0.noTeammateRender);
 		IMGUI._SameLine();
-		IMGUI._Checkbox("不显示血条(游戏内)", ref visualsConfig_0.noHpBar);
-		IMGUI._Checkbox("无视觉后坐力", ref visualsConfig_0.noVisualRecoil);
+		IMGUI._Checkbox(Veh.L.T("visual.noHpBar"), ref visualsConfig_0.noHpBar);
+		IMGUI._Checkbox(Veh.L.T("visual.noVisualRecoil"), ref visualsConfig_0.noVisualRecoil);
 		IMGUI._End();
 	}
 
