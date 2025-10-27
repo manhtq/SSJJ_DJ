@@ -1,0 +1,27 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>AdvancedAntiCheat</AssemblyName>
+    <RootNamespace>AdvancedAntiCheat</RootNamespace>
+    <GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Unity Engine references - adjust paths to your game's Managed folder -->
+    <!-- Common Unity DLLs that usually exist: -->
+    <Reference Include="UnityEngine">
+      <HintPath>C:\Path\To\Your\Game\GameName_Data\Managed\UnityEngine.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>C:\Path\To\Your\Game\GameName_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <!-- If CoreModule doesn't exist, try these alternatives: -->
+    <Reference Include="UnityEngine.CoreModule" Condition="!Exists('C:\Path\To\Your\Game\GameName_Data\Managed\UnityEngine.CoreModule.dll')">
+      <HintPath>C:\Path\To\Your\Game\GameName_Data\Managed\UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+</Project>
